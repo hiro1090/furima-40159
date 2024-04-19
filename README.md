@@ -47,4 +47,4 @@
 | area_id             | integer        | null: false,                     |
 | category_id         | integer        | null: false,                     |
 - belongs_to :user
-- has_one :user_transact
+- has_many :user_transact
