@@ -349,7 +349,7 @@
                 <mxCell id="324" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;dropTarget=0;collapsible=0;recursiveResize=0;expand=0;fontStyle=0;fillColor=none;strokeColor=inherit;sketch=0;strokeWidth=1;" parent="315" vertex="1">
                     <mxGeometry y="47" width="270" height="47" as="geometry"/>
                 </mxCell>
-                <mxCell id="325" value="delivary_change_id" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;sketch=0;strokeWidth=1;" parent="324" vertex="1">
+                <mxCell id="325" value="delivary_charge_id" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;sketch=0;strokeWidth=1;" parent="324" vertex="1">
                     <mxGeometry width="110" height="47" as="geometry">
                         <mxRectangle width="110" height="47" as="alternateBounds"/>
                     </mxGeometry>

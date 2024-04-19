@@ -17,12 +17,12 @@
 ## addressesテーブル
 | Column              | Type             | Options                          |
 | ------------------- | ---------------- | -------------------------------- |
-| postal_code         | integer          | null: false                      |
+| postal_code         | string           | null: false                      |
 | prefecture_id       | integer          | null: false                      |
 | city                | string           | null: false                      |
 | address             | string           | null: false                      |
 | building_name       | string           |                                  |
-| user_transact      | references       | null:false, foreign_key: true    |
+| user_transact       | references       | null:false, foreign_key: true    |
 - belongs_to :user_transact
 
 ## users_transactsテーブル
@@ -31,7 +31,7 @@
 | user                | references       | null: false, foreign_key: true   |
 | item                | references       | null: false, foreign_key: true   |
 - belongs_to :user
-- belongs_to :address
+- has_one :address
 - belongs_to :item
 
 ## itemsテーブル
@@ -42,9 +42,8 @@
 | price               | integer        | null: false,                     |
 | user                | references     | null: false, foreign_ key: true  |
 | item_condition_id   | integer        | null: false,                     |
-| delivery_change_id  | integer        | null: false,                     |
+| delivery_charge_id  | integer        | null: false,                     |
 | delivery_day_id     | integer        | null: false,                     |
-| delivery_way_id     | integer        | null: false,                     |
 | area_id             | integer        | null: false,                     |
 | category_id         | integer        | null: false,                     |
 - belongs_to :user
