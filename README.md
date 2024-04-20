@@ -23,6 +23,7 @@
 | address             | string           | null: false                      |
 | building_name       | string           |                                  |
 | user_transact       | references       | null:false, foreign_key: true    |
+| phone               | string           | null: false                      |
 - belongs_to :user_transact
 
 ## users_transactsテーブル
@@ -44,7 +45,7 @@
 | item_condition_id   | integer        | null: false,                     |
 | delivery_charge_id  | integer        | null: false,                     |
 | delivery_day_id     | integer        | null: false,                     |
-| area_id             | integer        | null: false,                     |
+| prefecture_id       | integer        | null: false,                     |
 | category_id         | integer        | null: false,                     |
 - belongs_to :user
-- has_many :user_transact
+- has_one :user_transact
