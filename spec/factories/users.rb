@@ -3,10 +3,10 @@ FactoryBot.define do
     nickname {Faker::Name.last_name}
     email {Faker::Internet.email}
     password {Faker::Internet.password(min_length: 6)}
-    first_name {Faker::Name.first_name}
-    family_name {Faker::Name.last_name}
-    first_name_kana {Faker::Name.first_name}
-    family_name_kana {Faker::Name.last_name}
+    first_name {"太郎"} #全角の名前に変更 
+    family_name {"山田"} #全角の姓に変更
+    first_name_kana {"タロウ"} #全角カナの名前に変更
+    family_name_kana {"ヤマダ"} #全角カナの姓に変更
     birthday {Faker::Date.birthday(min_age: 18, max_age: 65)}
   end
 end
