@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    user = FactoryBot.create(:user)
-    @item = FactoryBot.build(:item, user: user)
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品出品' do
@@ -33,31 +32,31 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーの情報が必須であること' do
-        @item.category_id = 1  # 1は選択していないことを示す値と仮定
+        @item.category_id = 1  
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
 
       it '商品の状態の情報が必須であること' do
-        @item.item_condition_id = 1  # 1は選択していないことを示す値と仮定
+        @item.item_condition_id = 1  
         @item.valid?
         expect(@item.errors.full_messages).to include("Item condition must be other than 1")
       end
 
       it '配送料の負担の情報が必須であること' do
-        @item.delivery_charge_id = 1  # 1は選択していないことを示す値と仮定
+        @item.delivery_charge_id = 1 
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge must be other than 1")
       end
 
       it '発送元の地域の情報が必須であること' do
-        @item.prefecture_id = 1  # 1は選択していないことを示す値と仮定
+        @item.prefecture_id = 1  
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
 
       it '発送までの日数の情報が必須であること' do
-        @item.delivery_day_id = 1  # 1は選択していないことを示す値と仮定
+        @item.delivery_day_id = 1 
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery day must be other than 1")
       end
@@ -68,14 +67,22 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
-      it '価格は、¥300〜¥9,999,999の間のみ保存可能であること' do
+      it '価格は、¥300以上でなければ保存不可であること' do
         @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
-
+      end
+      
+      it '価格は、¥9,999,999以下でなければ保存不可であること' do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+
+      it 'ユーザーが紐づいていなければ登録できないこと' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
 
       it '価格は半角数値のみ保存可能であること' do
