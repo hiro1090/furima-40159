@@ -5,7 +5,7 @@ FactoryBot.define do
     end
     name { 'ChangedName' }
     description { 'ChangedDescription' }
-    price { 500 } 
+    price { 500 }
     user { FactoryBot.create(:user) } # この部分は変更不要
     item_condition_id { 3 }
     delivery_charge_id { 3 }
