@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
-    resources :users_transacts, only: [:index, :create]
-  end
-
+  resources :items, only: [:new, :create, :show, :edit, :update, :destroy]
   devise_for :users
-
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'items#index'
+  # Defines the root path route ("/")
+  # root "articles#index"
 end

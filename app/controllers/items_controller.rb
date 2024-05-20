@@ -18,7 +18,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy if current_user.id == @item.user.id
+    if current_user.id == @item.user.id
+      @item.destroy
+    end
     redirect_to root_path
   end
 
@@ -52,7 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    return unless current_user.id == @item.user_id || @item.user_transact.present?
+    return if current_user.id == @item.user_id
 
     redirect_to root_path
   end
