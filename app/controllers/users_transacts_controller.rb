@@ -1,10 +1,12 @@
 class UsersTransactsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_index, only:[:index]
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @form_object = FormObject.new
+
   end
 
   def create
@@ -35,4 +37,10 @@ class UsersTransactsController < ApplicationController
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
   end
+
+  def move_to_index
+    if current_user.id == @item.user_id || @item.user_transact.present?
+      redirect_to root_path
+end
+end
 end

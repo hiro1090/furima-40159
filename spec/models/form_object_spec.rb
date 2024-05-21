@@ -32,10 +32,10 @@ RSpec.describe FormObject, type: :model do
         expect(@address.errors.full_messages).to include('Postal code は「3桁ハイフン4桁」の形式で入力してください')
       end
 
-      it 'prefectureが空だと保存できないこと' do
-        @address.prefecture_id = nil
+      it 'prefecture_idが1では保存できないこと' do
+        @address.prefecture_id = 1
         @address.valid?
-        expect(@address.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@address.errors.full_messages).to include("Prefecture must be other than 1")
       end
 
       it 'cityが空だと保存できないこと' do
@@ -53,20 +53,39 @@ RSpec.describe FormObject, type: :model do
       it 'phoneが空だと保存できないこと' do
         @address.phone = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Phone can't be blank", 'Phone は10桁以上11桁以内で入力してください')
+        expect(@address.errors.full_messages).to include("Phone can't be blank")
       end
 
       it 'phoneが10桁未満だと保存できないこと' do
         @address.phone = '123456789'
         @address.valid?
-        expect(@address.errors.full_messages).to include('Phone は10桁以上11桁以内で入力してください')
+        expect(@address.errors.full_messages).to include( "Phone は10桁以上11桁以内の半角数字で入力してください")
       end
 
       it 'phoneが11桁を超えると保存できないこと' do
         @address.phone = '123456789012'
         @address.valid?
-        expect(@address.errors.full_messages).to include('Phone は10桁以上11桁以内で入力してください')
+        expect(@address.errors.full_messages).to include( "Phone は10桁以上11桁以内の半角数字で入力してください")
       end
+
+      it 'phoneが半角英数字以外だと保存できないこと' do
+        @address.phone = '０９０１２３４５６７８'
+        @address.valid?
+        expect(@address.errors.full_messages).to include( "Phone は10桁以上11桁以内の半角数字で入力してください")
+        end
+
+        it 'itemが紐づいていないと保存できないこと' do
+          @address.item_id = nil
+          @address.valid?
+          expect(@address.errors.full_messages).to include("Item can't be blank")
+          end
+
+          it 'userが紐づいていないと保存できないこと' do
+            @address.user_id = nil
+            @address.valid?
+            expect(@address.errors.full_messages).to include("User can't be blank")
+        end
+
 
       it 'tokenが空だと保存できないこと' do
         @address.token = nil
